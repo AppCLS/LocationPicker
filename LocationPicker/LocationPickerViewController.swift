@@ -35,15 +35,16 @@ open class LocationPickerViewController: UIViewController {
 	/// default: false
 	public var useCurrentLocationAsHint = false
 	
-	/// default: "Search or enter an address"
-	public var searchBarPlaceholder = "Search or enter an address"
-	
+	/// default: "Search by location"
+	public var searchBarPlaceholder = NSLocalizedString("Search by locationsdf", comment: "")
+    
 	/// default: "Search History"
-	public var searchHistoryLabel = "Search History"
+	public var searchHistoryLabel = NSLocalizedString("Search History", comment: "")
     
     /// default: "Select"
-    public var selectButtonTitle = "Select"
-	
+    public var selectButtonAttributedTitle: NSAttributedString? = nil
+    public var selectButtonTitle = NSLocalizedString("Select", comment: "")
+
 	lazy public var currentLocationButtonBackground: UIColor = {
 		if let navigationBar = self.navigationController?.navigationBar,
 			let barTintColor = navigationBar.barTintColor {
@@ -107,7 +108,32 @@ open class LocationPickerViewController: UIViewController {
 		searchBar.placeholder = self.searchBarPlaceholder
 		return searchBar
 	}()
-	
+    
+    lazy var selectButton: UIButton = {
+        let selectButton = UIButton(type: UIButton.ButtonType.custom)
+        if self.selectButtonAttributedTitle != nil {
+            selectButton.setAttributedTitle(self.selectButtonAttributedTitle!, for: UIControl.State.normal)
+        }
+        else {
+            selectButton.setTitle(self.selectButtonTitle, for: UIControl.State.normal)
+            selectButton.setTitleColor(UIColor.blue, for: UIControl.State.normal)
+        }
+
+        selectButton.addTarget(self, action: #selector(LocationPickerViewController.selectButtonTapped),
+                         for: .touchUpInside)
+
+        return selectButton
+    }()
+    
+    @objc func selectButtonTapped() {
+        completion?(location)
+        if let navigation = navigationController, navigation.viewControllers.count > 1 {
+            navigation.popViewController(animated: true)
+        } else {
+            presentingViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+
 	deinit {
 		searchTimer?.invalidate()
 		localSearch?.cancel()
@@ -160,6 +186,9 @@ open class LocationPickerViewController: UIViewController {
 		mapView.userTrackingMode = .none
 		mapView.showsUserLocation = showCurrentLocationInitially || showCurrentLocationButton
 		
+        navigationItem.backBarButtonItem?.title = NSLocalizedString("Cancel", comment: "")
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: self.selectButton)]
+
 		if useCurrentLocationAsHint {
 			getCurrentLocation()
 		}
@@ -361,7 +390,7 @@ extension LocationPickerViewController: MKMapViewDelegate {
 		// drop only on long press gesture
 		let fromLongPress = annotation is MKPointAnnotation
 		pin.animatesDrop = fromLongPress
-		pin.rightCalloutAccessoryView = selectLocationButton()
+//        pin.rightCalloutAccessoryView = selectLocationButton()
 		pin.canShowCallout = !fromLongPress
 		return pin
 	}

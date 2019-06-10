@@ -32,6 +32,7 @@ class ViewController: UIViewController {
 			locationPicker.showCurrentLocationButton = true
 			locationPicker.useCurrentLocationAsHint = true
 			locationPicker.selectCurrentLocationInitially = true
+            locationPicker.mapType = .standard
 			
 			locationPicker.completion = { self.location = $0 }
 		}
