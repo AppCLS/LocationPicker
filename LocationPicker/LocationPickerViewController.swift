@@ -131,17 +131,16 @@ import CoreLocation
         let cancelButton = UIButton(type: UIButton.ButtonType.custom)
         if self.cancelButtonAttributedTitle != nil {
             cancelButton.setAttributedTitle(self.cancelButtonAttributedTitle!, for: UIControl.State.normal)
-            cancelButton.setAttributedTitle(self.cancelButtonAttributedTitle!, for: UIControl.State.highlighted)
         }
         else {
-            cancelButton.setTitle(self.selectButtonTitle, for: UIControl.State.normal)
+            cancelButton.setTitle(self.cancelButtonTitle, for: UIControl.State.normal)
             cancelButton.setTitleColor(UIColor.blue, for: UIControl.State.normal)
         }
         
         cancelButton.addTarget(self, action: #selector(LocationPickerViewController.cancelButtonTapped),
                                for: .touchUpInside)
         
-        return selectButton
+        return cancelButton
     }()
 
     @objc func selectButtonTapped() {
@@ -220,7 +219,7 @@ import CoreLocation
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: self.selectButton)]
-        navigationItem.leftBarButtonItems = [UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: nil, action: nil)]
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(customView: self.cancelButton)]
 
 		if useCurrentLocationAsHint {
 			getCurrentLocation()
