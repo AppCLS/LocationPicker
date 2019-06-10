@@ -265,7 +265,7 @@ import CoreLocation
 		mapView.setRegion(region, animated: animated)
 	}
 
-    func selectLocation(location: CLLocation) {
+    @objc open func selectLocation(location: CLLocation) {
         // add point annotation to map
         let annotation = MKPointAnnotation()
         annotation.coordinate = location.coordinate
