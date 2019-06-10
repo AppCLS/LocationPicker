@@ -10,42 +10,42 @@ import UIKit
 import MapKit
 import CoreLocation
 
-open class LocationPickerViewController: UIViewController {
+@objc open class LocationPickerViewController: UIViewController {
 	struct CurrentLocationListener {
 		let once: Bool
 		let action: (CLLocation) -> ()
 	}
 	
-	public var completion: ((Location?) -> ())?
+	@objc public var completion: ((Location?) -> ())?
 	
 	// region distance to be used for creation region when user selects place from search results
-	public var resultRegionDistance: CLLocationDistance = 600
+	@objc public var resultRegionDistance: CLLocationDistance = 600
 	
 	/// default: true
-	public var showCurrentLocationButton = true
+	@objc public var showCurrentLocationButton = true
 	
 	/// default: true
-	public var showCurrentLocationInitially = true
+	@objc public var showCurrentLocationInitially = true
 
     /// default: false
     /// Select current location only if `location` property is nil.
-    public var selectCurrentLocationInitially = false
+    @objc public var selectCurrentLocationInitially = false
 	
 	/// see `region` property of `MKLocalSearchRequest`
 	/// default: false
-	public var useCurrentLocationAsHint = false
+	@objc public var useCurrentLocationAsHint = false
 	
 	/// default: "Search by location"
-	public var searchBarPlaceholder = NSLocalizedString("Search by locationsdf", comment: "")
+	@objc public var searchBarPlaceholder = NSLocalizedString("Search by locationsdf", comment: "")
     
 	/// default: "Search History"
-	public var searchHistoryLabel = NSLocalizedString("Search History", comment: "")
+	@objc public var searchHistoryLabel = NSLocalizedString("Search History", comment: "")
     
     /// default: "Select"
-    public var selectButtonAttributedTitle: NSAttributedString? = nil
-    public var selectButtonTitle = NSLocalizedString("Select", comment: "")
+    @objc public var selectButtonAttributedTitle: NSAttributedString? = nil
+    @objc public var selectButtonTitle = NSLocalizedString("Select", comment: "")
 
-	lazy public var currentLocationButtonBackground: UIColor = {
+	@objc lazy public var currentLocationButtonBackground: UIColor = {
 		if let navigationBar = self.navigationController?.navigationBar,
 			let barTintColor = navigationBar.barTintColor {
 				return barTintColor
@@ -53,12 +53,12 @@ open class LocationPickerViewController: UIViewController {
 	}()
     
     /// default: .Minimal
-    public var searchBarStyle: UISearchBar.Style = .minimal
+    @objc public var searchBarStyle: UISearchBar.Style = .minimal
 
 	/// default: .Default
-	public var statusBarStyle: UIStatusBarStyle = .default
+	@objc public var statusBarStyle: UIStatusBarStyle = .default
 	
-	public var mapType: MKMapType = .hybrid {
+	@objc public var mapType: MKMapType = .hybrid {
 		didSet {
 			if isViewLoaded {
 				mapView.mapType = mapType
@@ -66,7 +66,7 @@ open class LocationPickerViewController: UIViewController {
 		}
 	}
 	
-	public var location: Location? {
+	@objc public var location: Location? {
 		didSet {
 			if isViewLoaded {
 				searchBar.text = location.flatMap({ $0.title }) ?? ""
