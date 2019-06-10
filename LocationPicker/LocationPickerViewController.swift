@@ -44,6 +44,8 @@ import CoreLocation
     /// default: "Select"
     @objc public var selectButtonAttributedTitle: NSAttributedString? = nil
     @objc public var selectButtonTitle = NSLocalizedString("Select", comment: "")
+    @objc public var cancelButtonAttributedTitle: NSAttributedString? = nil
+    @objc public var cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
 
 	@objc lazy public var currentLocationButtonBackground: UIColor = {
 		if let navigationBar = self.navigationController?.navigationBar,
@@ -124,9 +126,33 @@ import CoreLocation
 
         return selectButton
     }()
-    
+
+    lazy var cancelButton: UIButton = {
+        let cancelButton = UIButton(type: UIButton.ButtonType.custom)
+        if self.cancelButtonAttributedTitle != nil {
+            cancelButton.setAttributedTitle(self.cancelButtonAttributedTitle!, for: UIControl.State.normal)
+        }
+        else {
+            cancelButton.setTitle(self.selectButtonTitle, for: UIControl.State.normal)
+            cancelButton.setTitleColor(UIColor.blue, for: UIControl.State.normal)
+        }
+        
+        cancelButton.addTarget(self, action: #selector(LocationPickerViewController.cancelButtonTapped),
+                               for: .touchUpInside)
+        
+        return selectButton
+    }()
+
     @objc func selectButtonTapped() {
         completion?(location)
+        if let navigation = navigationController, navigation.viewControllers.count > 1 {
+            navigation.popViewController(animated: true)
+        } else {
+            presentingViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+
+    @objc func cancelButtonTapped() {
         if let navigation = navigationController, navigation.viewControllers.count > 1 {
             navigation.popViewController(animated: true)
         } else {
@@ -186,8 +212,14 @@ import CoreLocation
 		mapView.userTrackingMode = .none
 		mapView.showsUserLocation = showCurrentLocationInitially || showCurrentLocationButton
 		
-        navigationItem.backBarButtonItem?.title = NSLocalizedString("Cancel", comment: "")
+        navigationItem.backBarButtonItem = nil//UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: nil, action: nil)
+        
+        
+//        self.navigationController?.navigationBar.topItem?.title = NSLocalizedString("Cancel", comment: "")
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage()
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
         navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: self.selectButton)]
+        navigationItem.leftBarButtonItems = [UIBarButtonItem(title: NSLocalizedString("Cancel", comment: ""), style: .plain, target: nil, action: nil)]
 
 		if useCurrentLocationAsHint {
 			getCurrentLocation()
@@ -204,7 +236,7 @@ import CoreLocation
 		super.viewDidLayoutSubviews()
 		if let button = locationButton {
 			button.frame.origin = CGPoint(
-				x: view.frame.width - button.frame.width - 16,
+				x: 16,
 				y: view.frame.height - button.frame.height - 20
 			)
 		}
