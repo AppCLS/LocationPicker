@@ -131,6 +131,7 @@ import CoreLocation
         let cancelButton = UIButton(type: UIButton.ButtonType.custom)
         if self.cancelButtonAttributedTitle != nil {
             cancelButton.setAttributedTitle(self.cancelButtonAttributedTitle!, for: UIControl.State.normal)
+            cancelButton.setAttributedTitle(self.cancelButtonAttributedTitle!, for: UIControl.State.highlighted)
         }
         else {
             cancelButton.setTitle(self.selectButtonTitle, for: UIControl.State.normal)
