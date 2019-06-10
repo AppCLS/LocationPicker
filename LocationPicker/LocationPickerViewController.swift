@@ -36,7 +36,7 @@ import CoreLocation
 	@objc public var useCurrentLocationAsHint = false
 	
 	/// default: "Search by location"
-	@objc public var searchBarPlaceholder = NSLocalizedString("Search by locationsdf", comment: "")
+	@objc public var searchBarPlaceholder = NSLocalizedString("Search by location", comment: "")
     
 	/// default: "Search History"
 	@objc public var searchHistoryLabel = NSLocalizedString("Search History", comment: "")
