@@ -51,7 +51,9 @@ import CoreLocation
 		if let navigationBar = self.navigationController?.navigationBar,
 			let barTintColor = navigationBar.barTintColor {
 				return barTintColor
-		} else { return .white }
+		} else {
+            return .white
+        }
 	}()
     
     /// default: .Minimal
@@ -100,7 +102,7 @@ import CoreLocation
 	lazy var searchController: UISearchController = {
 		let search = UISearchController(searchResultsController: self.results)
 		search.searchResultsUpdater = self
-		search.hidesNavigationBarDuringPresentation = false
+//		search.hidesNavigationBarDuringPresentation = false
 		return search
 	}()
 	
