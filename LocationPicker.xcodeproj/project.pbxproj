@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17665369170B6CD454F19F3A /* Pods_LocationPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9A44E51CAC412C08050802 /* Pods_LocationPicker.framework */; };
+		895B24CB2490422900058ECD /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895B24CA2490422900058ECD /* AFNetworking.framework */; };
 		B62463051B68A4DE00646DE2 /* LocationPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B62463041B68A4DE00646DE2 /* LocationPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B62463251B68A56D00646DE2 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62463241B68A56D00646DE2 /* LocationPickerViewController.swift */; };
 		B624632C1B68A90900646DE2 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624632B1B68A90900646DE2 /* LocationSearchResultsViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		895B24CA2490422900058ECD /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62462FF1B68A4DE00646DE2 /* LocationPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocationPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B62463031B68A4DE00646DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B62463041B68A4DE00646DE2 /* LocationPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationPicker.h; sourceTree = "<group>"; };
@@ -36,6 +38,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17665369170B6CD454F19F3A /* Pods_LocationPicker.framework in Frameworks */,
+				895B24CB2490422900058ECD /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +48,7 @@
 		7305F952F4ECD8992A3123C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				895B24CA2490422900058ECD /* AFNetworking.framework */,
 				EE9A44E51CAC412C08050802 /* Pods_LocationPicker.framework */,
 			);
 			name = Frameworks;
@@ -96,7 +100,6 @@
 				EB83C6FC98E9E6C72F9D72D6 /* Pods-LocationPicker.debug.xcconfig */,
 				D7AC4CA05E5A495F8E955415 /* Pods-LocationPicker.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -155,6 +158,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = B62462F51B68A4DE00646DE2;
