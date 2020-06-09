@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17665369170B6CD454F19F3A /* Pods_LocationPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9A44E51CAC412C08050802 /* Pods_LocationPicker.framework */; };
 		B62463051B68A4DE00646DE2 /* LocationPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = B62463041B68A4DE00646DE2 /* LocationPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B62463251B68A56D00646DE2 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62463241B68A56D00646DE2 /* LocationPickerViewController.swift */; };
 		B624632C1B68A90900646DE2 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624632B1B68A90900646DE2 /* LocationSearchResultsViewController.swift */; };
@@ -24,6 +25,9 @@
 		B624632D1B68E25D00646DE2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		B67F38F81B9C793C003ADFC8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B6D9F5151B9C9C670083EE55 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
+		D7AC4CA05E5A495F8E955415 /* Pods-LocationPicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPicker.release.xcconfig"; path = "Target Support Files/Pods-LocationPicker/Pods-LocationPicker.release.xcconfig"; sourceTree = "<group>"; };
+		EB83C6FC98E9E6C72F9D72D6 /* Pods-LocationPicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationPicker.debug.xcconfig"; path = "Target Support Files/Pods-LocationPicker/Pods-LocationPicker.debug.xcconfig"; sourceTree = "<group>"; };
+		EE9A44E51CAC412C08050802 /* Pods_LocationPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17665369170B6CD454F19F3A /* Pods_LocationPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7305F952F4ECD8992A3123C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE9A44E51CAC412C08050802 /* Pods_LocationPicker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B62462F51B68A4DE00646DE2 = {
 			isa = PBXGroup;
 			children = (
 				B62463011B68A4DE00646DE2 /* LocationPicker */,
 				B62463001B68A4DE00646DE2 /* Products */,
+				B6F7B4B6975ACF6D72565C0A /* Pods */,
+				7305F952F4ECD8992A3123C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +90,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B6F7B4B6975ACF6D72565C0A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB83C6FC98E9E6C72F9D72D6 /* Pods-LocationPicker.debug.xcconfig */,
+				D7AC4CA05E5A495F8E955415 /* Pods-LocationPicker.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,6 +118,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B62463151B68A4DE00646DE2 /* Build configuration list for PBXNativeTarget "LocationPicker" */;
 			buildPhases = (
+				6A3CDF8A0DE7C25DB46A38DD /* [CP] Check Pods Manifest.lock */,
 				B62462FA1B68A4DE00646DE2 /* Sources */,
 				B62462FB1B68A4DE00646DE2 /* Frameworks */,
 				B62462FC1B68A4DE00646DE2 /* Headers */,
@@ -151,6 +177,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A3CDF8A0DE7C25DB46A38DD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocationPicker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B62462FA1B68A4DE00646DE2 /* Sources */ = {
@@ -280,6 +331,7 @@
 		};
 		B62463161B68A4DE00646DE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB83C6FC98E9E6C72F9D72D6 /* Pods-LocationPicker.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -301,6 +353,7 @@
 		};
 		B62463171B68A4DE00646DE2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7AC4CA05E5A495F8E955415 /* Pods-LocationPicker.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
