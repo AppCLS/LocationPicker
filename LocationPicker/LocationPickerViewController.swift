@@ -252,7 +252,14 @@ import AFNetworking
 	}
 	
 	func setInitialLocation() {
-		if let location = location {
+        if !AFNetworkReachabilityManager.shared().isReachable {
+            let alert = UIAlertController(title: nil, message: NSLocalizedString("No internet connection", comment: ""), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in }))
+            self.present(alert, animated: true)
+            return
+        }
+
+        if let location = location {
 			// present initial location if any
 			self.location = location
 			showCoordinates(location.coordinate, animated: false)
