@@ -253,7 +253,8 @@ import AFNetworking
 	
 	func setInitialLocation() {
         if !AFNetworkReachabilityManager.shared().isReachable {
-            let alert = UIAlertController(title: nil, message: NSLocalizedString("No internet connection", comment: ""), preferredStyle: .alert)
+            let title = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
+            let alert = UIAlertController(title: title, message: NSLocalizedString("No internet connection", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in }))
             self.present(alert, animated: true)
             return
