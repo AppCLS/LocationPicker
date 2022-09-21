@@ -7,6 +7,6 @@ target 'LocationPicker' do
   # Comment the next line if you don't want to use dynamic frameworks
 
   # Pods for LocationPicker
-  pod 'AFNetworking', '4.0.0'
+  # pod 'AFNetworking', '4.0.0'
 
 end

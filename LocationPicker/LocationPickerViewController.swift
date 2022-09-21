@@ -9,13 +9,14 @@
 import UIKit
 import MapKit
 import CoreLocation
-import AFNetworking
 
 @objc open class LocationPickerViewController: UIViewController {
     struct CurrentLocationListener {
         let once: Bool
         let action: (CLLocation) -> ()
     }
+    
+    @objc public var reachabilityProbe: (() -> Bool)?
     
     @objc public var completion: ((Location?) -> ())?
     
@@ -238,7 +239,7 @@ import AFNetworking
     }
     
     func setInitialLocation() {
-        guard AFNetworkReachabilityManager.shared().isReachable else {
+        guard self.reachabilityProbe?() == true else {
             let title = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
             let alert = UIAlertController(title: title, message: NSLocalizedString("No internet connection", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in }))
@@ -309,7 +310,7 @@ import AFNetworking
 
         self.geocoder.cancelGeocode()
         
-        guard AFNetworkReachabilityManager.shared().isReachable else {
+        guard self.reachabilityProbe?() == true else {
             let alert = UIAlertController(title: nil, message: NSLocalizedString("No internet connection", comment: ""), preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in }))
             self.present(alert, animated: true)
